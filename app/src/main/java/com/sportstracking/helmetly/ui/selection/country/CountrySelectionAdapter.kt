@@ -38,12 +38,16 @@ class CountrySelectionAdapter(
                         countries[position].countryName,
                         sport
                     )
-                val imm: InputMethodManager =
-                    context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                imm.hideSoftInputFromWindow(itemView.windowToken, 0) // hide keyboard when navigating to the next screen
+                hideKeyBoardWhileNaivgating(it)
                 it.findNavController().navigate(directions)
             }
         }
+    }
+
+    private fun hideKeyBoardWhileNaivgating(itemView: View) {
+        val imm: InputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(itemView.windowToken, 0)
     }
 
     override fun getItemCount(): Int {

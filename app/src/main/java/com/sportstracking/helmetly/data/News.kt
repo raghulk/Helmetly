@@ -1,12 +1,10 @@
 package com.sportstracking.helmetly.data
 
-import org.json.JSONObject
-
 data class News(
     val status: String,
     val totalResults: String?,
     val articles: List<Article>?
-){
+) {
     data class Article(
         val source: Source,
         val author: String?,
@@ -16,7 +14,7 @@ data class News(
         val urlToImage: String?,
         val publishedAt: String?,
         val content: String
-    ){
+    ) {
         data class Source(
             val id: String?,
             val name: String?

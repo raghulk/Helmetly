@@ -8,30 +8,28 @@
     android:layout_gravity="center"
     android:layout_margin="16dp"
     android:layout_marginVertical="12dp"
-    card_view:cardCornerRadius="8dp"
     android:background="@color/background"
+    card_view:cardCornerRadius="8dp"
     card_view:cardElevation="3dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background"
-        >
+        android:background="@color/background">
 
         <ImageView
             android:id="@+id/event_image"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:alpha="0.5"
-            android:src="@drawable/thumb_image" />
+            android:alpha="0.5" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:background="@drawable/details_background"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="@drawable/details_background"
             android:paddingHorizontal="8dp"
             android:paddingVertical="4dp">
 
@@ -41,17 +39,16 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/background"
                 android:textStyle="bold"
-                tools:text="Arsenal vs Manchester United"
-                />
+                tools:text="Arsenal vs Manchester United" />
 
             <TextView
                 android:id="@+id/score_details"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="8dp"
-                android:textStyle="bold"
                 android:textColor="@color/background"
                 android:textSize="22sp"
+                android:textStyle="bold"
                 tools:text="2 - 0" />
 
             <TextView
@@ -69,8 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="12dp"
             android:layout_marginEnd="8dp"
+            android:layout_marginBottom="12dp"
             android:background="@drawable/badge_background"
             android:paddingHorizontal="16dp"
             android:paddingVertical="6dp"

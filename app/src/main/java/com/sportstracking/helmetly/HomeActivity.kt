@@ -10,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.sportstracking.helmetly.databinding.ActivityHomeBinding
 import kotlin.system.exitProcess
 
-class HomeActivity: AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -32,13 +32,14 @@ class HomeActivity: AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }
+
     companion object {
         var lastVisitedFragment = "events"
     }
 
     override fun onBackPressed() {
         super.onBackPressed()
-        if(lastVisitedFragment == "events"){
+        if (lastVisitedFragment == "events") {
             exitProcess(0)
         }
 

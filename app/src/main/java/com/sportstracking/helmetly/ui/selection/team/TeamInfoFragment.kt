@@ -1,9 +1,7 @@
 package com.sportstracking.helmetly.ui.selection.team
 
-import android.app.Activity
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +13,6 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.databinding.FragmentTeamInfoBinding
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
@@ -53,7 +50,6 @@ class TeamInfoFragment : Fragment() {
     }
 
     private fun setupView() {
-        Log.d("Info", selectedTeamId)
         selectedTeam.let {
             binding.apply {
                 sportPlayed.text = it.strSport
@@ -93,7 +89,6 @@ class TeamInfoFragment : Fragment() {
     }
 
     private fun setFormedYear(formedYear: String?, formedYearView: TextView) {
-        Log.d("Info", formedYear.toString())
         if (formedYear != null && formedYear != "0") {
             formedYearView.text = formedYear
         } else {

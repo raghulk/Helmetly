@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    >
-    <item android:id="@+id/done_button"
-        android:title="@string/search_placeholder"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/done_button"
         android:icon="@drawable/ic_done"
-        app:showAsAction="ifRoom"
-        />
+        android:title="@string/search_placeholder"
+        app:showAsAction="ifRoom" />
 
 </menu>

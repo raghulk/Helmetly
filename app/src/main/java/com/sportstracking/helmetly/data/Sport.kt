@@ -1,8 +1,8 @@
 package com.sportstracking.helmetly.data
 
 data class SportsArray(
-  val sports: List<Sport>
-){
+    val sports: List<Sport>
+) {
     data class Sport(
         val idSport: Int,
         val strSport: String,

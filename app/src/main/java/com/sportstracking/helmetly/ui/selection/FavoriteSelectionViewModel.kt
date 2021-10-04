@@ -1,6 +1,5 @@
 package com.sportstracking.helmetly.ui.selection
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,10 +9,9 @@ import com.sportstracking.helmetly.data.TeamArray
 import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.network.NetworkService
 import com.sportstracking.helmetly.network.viewmodelservice.SDBService
-import com.sportstracking.helmetly.ui.selection.team.TeamSelectionAdapter.SubscribeToChanges
 import kotlinx.coroutines.launch
 
-class FavoriteSelectionViewModel : ViewModel(), SubscribeToChanges {
+class FavoriteSelectionViewModel : ViewModel() {
 
     val sportsData: MutableLiveData<SportsArray> = MutableLiveData()
     val countriesData: MutableLiveData<CountryArray> = MutableLiveData()
@@ -46,27 +44,28 @@ class FavoriteSelectionViewModel : ViewModel(), SubscribeToChanges {
             val sdbService: SDBService by lazy {
                 service.create(SDBService::class.java)
             }
-            teamsData.value = sdbService.getTeamData("v1/json/1/search_all_teams.php?s=$selectedSport&c=$selectedCountry")
+            teamsData.value =
+                sdbService.getTeamData("v1/json/1/search_all_teams.php?s=$selectedSport&c=$selectedCountry")
         }
     }
 
-    companion object {
-        private const val URL = "https://www.thesportsdb.com/api/"
-    }
-
-    override fun add(team: Team) {
+    fun add(team: Team) {
         val teamList: MutableSet<Team> = mutableSetOf()
         selectedTeams.value?.toMutableSet()?.let { teamList.addAll(it) }
         teamList.add(team)
         selectedTeams.value = teamList.toList()
     }
 
-    override fun remove(team: Team) {
+    fun remove(team: Team) {
         val teamList: MutableList<Team> = mutableListOf()
         selectedTeams.value?.let { teamList.addAll(it) }
         val newTeamList = selectedTeams.value?.filter {
             it.idTeam != team.idTeam
         }
         selectedTeams.value = newTeamList
+    }
+
+    companion object {
+        private const val URL = "https://www.thesportsdb.com/api/"
     }
 }

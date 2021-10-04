@@ -5,16 +5,15 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.data.TeamArray.Team
-import com.sportstracking.helmetly.ui.selection.team.TeamSelectionAdapter
 import com.sportstracking.helmetly.utility.Utility
 
 class SelectedTeamsAdapter(
@@ -36,8 +35,7 @@ class SelectedTeamsAdapter(
             teamName.text = selectedTeams[position].strTeam
             setImage(selectedTeams[position].strTeamBadge.toString(), teamLogo)
             removeButton.setOnClickListener{
-                val subscribeToChanges: TeamSelectionAdapter.SubscribeToChanges = favoriteSelectionViewModel
-                subscribeToChanges.remove(selectedTeams[position])
+                favoriteSelectionViewModel.remove(selectedTeams[position])
             }
             val screenWidth = Utility().getScreenSize(context)[0]
             container.minWidth = (screenWidth.toInt() / 3) - 35

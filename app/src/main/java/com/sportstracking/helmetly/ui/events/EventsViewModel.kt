@@ -14,7 +14,7 @@ class EventsViewModel : ViewModel() {
 
     val pastEventsData: MutableLiveData<Result> = MutableLiveData()
     val newsData: MutableLiveData<MutableMap<Team, News.Article>> =
-        MutableLiveData() // this contains all the favorite teams selected by user and their respective last event
+        MutableLiveData() // this contains all the favorite teams selected by user and their respective news stories
 
     fun getPastEvents(team: Team) {
         viewModelScope.launch {
@@ -29,22 +29,22 @@ class EventsViewModel : ViewModel() {
 
     fun getNewsData(favTeams: List<Team>) {
         val newsMapData: MutableMap<Team, News.Article> = mutableMapOf()
-//        viewModelScope.launch {
-//            val service = NetworkService(NEWS_URL).retrofit
-//            val sdbService: SDBService by lazy {
-//                service.create(SDBService::class.java)
-//            }
-//            favTeams.forEach { team ->
-//                sdbService.getTeamNews("everything?q=${team.strTeam} ${team.strSport}&apiKey=$API_KEY&sortBy=relevancy&pageSize=1").articles?.let { articles ->
-//                    if (articles.isNotEmpty()) {
-//                        articles[0].let { article ->
-//                            newsMapData.put(team, article)
-//                        }
-//                    }
-//                }
-//            }
+        viewModelScope.launch {
+            val service = NetworkService(NEWS_URL).retrofit
+            val sdbService: SDBService by lazy {
+                service.create(SDBService::class.java)
+            }
+            favTeams.forEach { team ->
+                sdbService.getTeamNews("everything?q=${team.strTeam} ${team.strSport}&apiKey=$API_KEY&sortBy=relevancy&pageSize=1").articles?.let { articles ->
+                    if (articles.isNotEmpty()) {
+                        articles[0].let { article ->
+                            newsMapData.put(team, article)
+                        }
+                    }
+                }
+            }
             newsData.value = newsMapData
-//        }
+        }
 
     }
 

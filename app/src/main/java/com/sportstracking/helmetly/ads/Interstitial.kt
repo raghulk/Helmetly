@@ -26,22 +26,22 @@ class Interstitial(val context: Context) {
             adRequest,
             object : InterstitialAdLoadCallback() {
                 override fun onAdFailedToLoad(adError: LoadAdError) {
-                    Log.d("VM", "ad failed to load")
+                    Log.d("Interstitial", "ad failed to load")
                     mInterstitialAd = null
                 }
 
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                    Log.d("VM", "ad loaded")
+                    Log.d("Interstitial", "ad loaded")
                     mInterstitialAd = interstitialAd
                     showAdIfAvailable()
                 }
             })
 
         mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
-            override fun onAdDismissedFullScreenContent() { }
+            override fun onAdDismissedFullScreenContent() {}
 
             override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
-                Log.d("VM", "ad error")
+                Log.d("Interstitial", "ad error")
             }
 
             override fun onAdShowedFullScreenContent() {

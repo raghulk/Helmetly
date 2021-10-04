@@ -21,16 +21,16 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
         android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/selected_teams_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/separator_margin"
             android:layout_marginVertical="8dp"
+            android:layout_marginStart="@dimen/separator_margin"
             tools:listitem="@layout/selected_team_list_item" />
     </ScrollView>
 

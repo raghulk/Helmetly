@@ -2,22 +2,22 @@ package com.sportstracking.helmetly.ui.selection.team
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Filter
+import android.widget.Filterable
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
-import com.sportstracking.helmetly.ui.selection.sport.SportSelectionFragmentDirections
 import com.sportstracking.helmetly.utility.Utility
 import java.util.*
 
@@ -41,8 +41,7 @@ class TeamSelectionAdapter(
             teamName.text = teams[position].strTeam
             setImage(teams[position].strTeamBadge.toString(), teamLogo)
             itemView.setOnClickListener {
-                val subscribeToChanges: SubscribeToChanges = favoriteSelectionViewModel
-                subscribeToChanges.add(teams[position])
+                favoriteSelectionViewModel.add(teams[position])
             }
             val screenWidth = Utility().getScreenSize(context)[0]
             container.minWidth = (screenWidth.toInt() / 3) - 35
@@ -119,10 +118,5 @@ class TeamSelectionAdapter(
             }
         }
         return filter
-    }
-
-    interface SubscribeToChanges {
-        fun add(team: Team)
-        fun remove(team: Team)
     }
 }

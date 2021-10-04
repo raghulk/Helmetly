@@ -11,24 +11,24 @@
         android:id="@+id/no_news_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_gravity="center"
-        android:textSize="18sp"
+        android:gravity="center"
         android:text="@string/no_news_text"
+        android:textSize="18sp"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:visibility="gone"
         tools:text="No news to show" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:paddingTop="8dp"
         android:orientation="horizontal"
-        android:paddingBottom="6dp">
+        android:paddingTop="8dp"
+        android:paddingBottom="6dp"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/team_news_list"
@@ -37,6 +37,7 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:listitem="@layout/news_list_item" />
     </ScrollView>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

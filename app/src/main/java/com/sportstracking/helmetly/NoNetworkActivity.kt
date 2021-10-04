@@ -2,20 +2,12 @@ package com.sportstracking.helmetly
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.sportstracking.helmetly.databinding.ActivityFavoriteSelectionBinding.inflate
-import com.sportstracking.helmetly.databinding.ActivityHomeBinding
 import com.sportstracking.helmetly.databinding.ActivityNoNetworkBinding
 import com.sportstracking.helmetly.network.NetworkConnectivityChecker
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 
-class NoNetworkActivity: AppCompatActivity() {
+class NoNetworkActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNoNetworkBinding
 
@@ -26,7 +18,6 @@ class NoNetworkActivity: AppCompatActivity() {
         setContentView(binding.root)
 
         binding.retryButton.setOnClickListener {
-
             if (NetworkConnectivityChecker(this).checkForInternet()) {
                 checkIfIntroCompleted()
                 finish()
@@ -40,8 +31,7 @@ class NoNetworkActivity: AppCompatActivity() {
             if (!it.contains(getString(R.string.onBoarding_done))) {
                 val intent = Intent(this, IntroActivity::class.java)
                 startActivity(intent)
-            }
-            else{
+            } else {
                 val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
             }

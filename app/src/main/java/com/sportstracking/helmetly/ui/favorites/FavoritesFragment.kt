@@ -16,8 +16,6 @@ class FavoritesFragment : Fragment() {
 
     private var _binding: FragmentFavoritesBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -26,26 +24,6 @@ class FavoritesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
-
-
-        val manager = activity?.supportFragmentManager
-
-//        if (manager?.backStackEntryCount!! > 0) {
-//            manager.popBackStackImmediate();
-//        }
-//        manager?.popBackStack()
-//        manager?.beginTransaction()?.let {
-//            it.addToBackStack(null)
-//            it.commit()
-//        }
-
-        // working solution
-//        manager?.popBackStack()
-//        manager?.beginTransaction()?.let {
-//            view?.id?.let { it1 -> it.replace(it1, SportSelectionFragment()) }
-//            it.addToBackStack(null)
-//            it.commit()
-//        }
 
         val intent = Intent(context, FavoriteSelectionActivity::class.java)
         intent.putExtra("fromHome", true)
@@ -57,7 +35,7 @@ class FavoritesFragment : Fragment() {
         super.onResume()
         when (HomeActivity.lastVisitedFragment) {
             "events" -> findNavController().navigate(R.id.navigation_events)
-            "settings" -> findNavController().navigate(R.id.navigation_more)
+            "more" -> findNavController().navigate(R.id.navigation_more)
 
         }
     }

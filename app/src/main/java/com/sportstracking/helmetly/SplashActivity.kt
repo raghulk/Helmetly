@@ -2,7 +2,6 @@ package com.sportstracking.helmetly
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.sportstracking.helmetly.network.NetworkConnectivityChecker
 import com.sportstracking.helmetly.utility.SharedPrefHelper
@@ -17,22 +16,20 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkIfInternetIsAvailable() {
-        if (!NetworkConnectivityChecker(this).checkForInternet()){
+        if (!NetworkConnectivityChecker(this).checkForInternet()) {
             startActivity(Intent(this, NoNetworkActivity::class.java))
-        }
-        else {
+        } else {
             checkIfIntroCompleted()
         }
     }
 
     private fun checkIfIntroCompleted() {
-       val sharedPrefHelper = SharedPrefHelper(this).sharedPref
+        val sharedPrefHelper = SharedPrefHelper(this).sharedPref
         sharedPrefHelper.let {
             if (!it.contains(getString(R.string.onBoarding_done))) {
                 val intent = Intent(this, IntroActivity::class.java)
                 startActivity(intent)
-            }
-            else{
+            } else {
                 val intent = Intent(this, SignInActivity::class.java)
                 startActivity(intent)
             }

@@ -10,7 +10,7 @@
     <string name="sign_in_avatar">sign_in_avatar</string>
     <string name="DEFAULT_FAV_TEAM">None</string>
     <string name="country_selection_string">Select a country that plays %s</string>
-    <string name="search_placeholder">Search...</string>
+    <string name="search_placeholder">Search…</string>
     <string name="no_teams_selected_text">No favorite teams selected yet</string>
     <string name="no_internet_string">No Internet connection</string>
     <string name="retry">Retry</string>
@@ -19,4 +19,16 @@
     <string name="no_news_text">No team news to show</string>
     <string name="load_events_for_team">change team</string>
     <string name="no_events_text">No events found for this team</string>
+    <string name="google_sign_in">Google Sign In</string>
+    <string name="sport_played">Sport Played</string>
+    <string name="country">Country</string>
+    <string name="stadium">Stadium</string>
+    <string name="league">League</string>
+    <string name="gender">Gender</string>
+    <string name="formed_year">Formed Year</string>
+    <string name="description">Description</string>
+    <string name="about_developer">About Developer</string>
+    <string name="contribute_to_project">Contribute to Project</string>
+    <string name="app_walkthrough">App Walkthrough</string>
+    <string name="logout_of_helmetly">Logout of Helmetly</string>
 </resources>

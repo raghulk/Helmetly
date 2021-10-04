@@ -2,7 +2,6 @@ package com.sportstracking.helmetly.ui.selection.sport
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,7 +15,8 @@ import com.bumptech.glide.request.transition.Transition
 import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.data.SportsArray.Sport
 
-class SportSelectionAdapter(private val sports: MutableList<Sport> = mutableListOf()) : RecyclerView.Adapter<SportSelectionAdapter.SportViewHolder>() {
+class SportSelectionAdapter(private val sports: MutableList<Sport> = mutableListOf()) :
+    RecyclerView.Adapter<SportSelectionAdapter.SportViewHolder>() {
 
     private lateinit var context: Context
 
@@ -31,8 +31,11 @@ class SportSelectionAdapter(private val sports: MutableList<Sport> = mutableList
         holder.apply {
             sportName.text = sports[position].strSport
             setImage(sports[position].strSportThumb, sportImage)
-            itemView.setOnClickListener{
-                val directions = SportSelectionFragmentDirections.actionNavigationSportSelectionToNavigationCountrySelection(sports[position].strSport)
+            itemView.setOnClickListener {
+                val directions =
+                    SportSelectionFragmentDirections.actionNavigationSportSelectionToNavigationCountrySelection(
+                        sports[position].strSport
+                    )
                 it.findNavController().navigate(directions)
             }
         }
@@ -50,7 +53,7 @@ class SportSelectionAdapter(private val sports: MutableList<Sport> = mutableList
                     imageView.setImageDrawable(resource)
                 }
 
-                override fun onLoadCleared(placeholder: Drawable?) { }
+                override fun onLoadCleared(placeholder: Drawable?) {}
             })
     }
 

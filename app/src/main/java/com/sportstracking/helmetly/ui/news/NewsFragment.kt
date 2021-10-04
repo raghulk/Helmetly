@@ -1,7 +1,6 @@
 package com.sportstracking.helmetly.ui.news
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +30,8 @@ class NewsFragment : Fragment() {
         eventsViewModel =
             ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
         val favTeams = TinyDB(context).getListObject(
-            "${SharedPrefHelper.UID}_FAV_TEAMS", Team::class.java) as ArrayList<Team>
+            "${SharedPrefHelper.UID}_FAV_TEAMS", Team::class.java
+        ) as ArrayList<Team>
         eventsViewModel.getNewsData(favTeams)
     }
 
@@ -47,18 +47,18 @@ class NewsFragment : Fragment() {
             teamNewsRecyclerView = teamNewsList
         }
         newsAdapter = NewsAdapter()
-        teamNewsRecyclerView.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+        teamNewsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
         teamNewsRecyclerView.adapter = newsAdapter
 
 
         eventsViewModel.newsData.observe(viewLifecycleOwner, {
-            if (it.isNotEmpty()){
+            if (it.isNotEmpty()) {
                 teamNewsRecyclerView.visibility = View.VISIBLE
                 binding.noNewsText.visibility = View.GONE
                 newsAdapter.setNews(it)
                 newsAdapter.notifyDataSetChanged()
-            }
-            else {
+            } else {
                 hideRecyclerViewAndShowNoNewsMessage()
             }
         })

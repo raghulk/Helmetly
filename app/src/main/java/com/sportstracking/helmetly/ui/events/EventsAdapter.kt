@@ -2,11 +2,11 @@ package com.sportstracking.helmetly.ui.events
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
@@ -35,7 +35,11 @@ class EventsAdapter(
             setDate(events[position].dateEvent, eventDate)
             setImage(events[position].strThumb, eventImage, events[position].strSport)
             setEventLeague(events[position].strLeague, eventLeague)
-            setScoreDetails(events[position].intHomeScore, events[position].intAwayScore, scoreDetails)
+            setScoreDetails(
+                events[position].intHomeScore,
+                events[position].intAwayScore,
+                scoreDetails
+            )
         }
     }
 
@@ -43,7 +47,7 @@ class EventsAdapter(
     private fun setImage(imgUrl: String?, imageView: ImageView, sport: String) {
         var imageURL = imgUrl
         val screenWidth = Integer.parseInt(Utility().getScreenSize(context)[0])
-        if (imgUrl.isNullOrEmpty()){
+        if (imgUrl.isNullOrEmpty()) {
             imageURL = "https://source.unsplash.com/${screenWidth}x600/?$sport&${Math.random()}"
         }
         Glide.with(context)
@@ -66,18 +70,17 @@ class EventsAdapter(
     }
 
     private fun setEventLeague(league: String?, leagueView: TextView) {
-        if(league != null) {
+        if (league != null) {
             leagueView.text = league
-        } else{
+        } else {
             leagueView.visibility = View.GONE
         }
     }
 
     private fun setScoreDetails(homeScore: String?, awayScore: String?, scoreView: TextView) {
-        if(homeScore!= null && awayScore != null) {
+        if (homeScore != null && awayScore != null) {
             scoreView.text = "$homeScore - $awayScore"
-        }
-        else {
+        } else {
             scoreView.visibility = View.GONE
         }
     }

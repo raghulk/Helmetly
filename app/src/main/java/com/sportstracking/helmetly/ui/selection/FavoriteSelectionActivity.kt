@@ -32,12 +32,12 @@ class FavoriteSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if(shouldShowInterstitial()) showInterstiatial()
+        if (shouldShowInterstitial()) showInterstiatial()
 
-        favoriteSelectionViewModel = ViewModelProvider(this).get(FavoriteSelectionViewModel::class.java)
+        favoriteSelectionViewModel =
+            ViewModelProvider(this).get(FavoriteSelectionViewModel::class.java)
         binding = ActivityFavoriteSelectionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         navController = findNavController(R.id.nav_host_fragment_activity_favorite_selection)
 
@@ -47,9 +47,10 @@ class FavoriteSelectionActivity : AppCompatActivity() {
 
     private fun shouldShowInterstitial(): Boolean {
         val tinyDB = TinyDB(this)
-        val favTeams = tinyDB.getListObject("${SharedPrefHelper.UID}_FAV_TEAMS", TeamArray.Team::class.java)
+        val favTeams =
+            tinyDB.getListObject("${SharedPrefHelper.UID}_FAV_TEAMS", TeamArray.Team::class.java)
         var timesVisited = tinyDB.getLong("visitedFavorite")
-        if(timesVisited == 48L) timesVisited = 0L
+        if (timesVisited == 48L) timesVisited = 0L
         tinyDB.putLong("visitedFavorite", timesVisited + 1)
         return favTeams.isNotEmpty() && timesVisited % 3 == 0L
     }
@@ -61,7 +62,10 @@ class FavoriteSelectionActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val imm: InputMethodManager =
             this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(binding.root.windowToken, 0) // hide keyboard when navigating to the next/previous screen
+        imm.hideSoftInputFromWindow(
+            binding.root.windowToken,
+            0
+        ) // hide keyboard when navigating to the next/previous screen
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

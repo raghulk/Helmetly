@@ -2,16 +2,11 @@ package com.sportstracking.helmetly.ui.events
 
 import android.app.Activity
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatSpinner
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,7 +17,6 @@ import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.databinding.FragmentEventsBinding
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 import com.sportstracking.helmetly.utility.TinyDB
-import kotlin.system.exitProcess
 
 class EventsFragment : Fragment() {
 
@@ -40,6 +34,11 @@ class EventsFragment : Fragment() {
         super.onCreate(savedInstanceState)
         eventsViewModel =
             ViewModelProvider(requireActivity()).get(EventsViewModel::class.java)
+
+        favTeams = TinyDB(context).getListObject(
+            "${SharedPrefHelper.UID}_FAV_TEAMS", Team::class.java
+        ) as ArrayList<Team>
+
         setHasOptionsMenu(true)
     }
 
@@ -51,18 +50,7 @@ class EventsFragment : Fragment() {
         _binding = FragmentEventsBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        favTeams = TinyDB(context).getListObject(
-            "${SharedPrefHelper.UID}_FAV_TEAMS", Team::class.java
-        ) as ArrayList<Team>
-//        eventsViewModel.getPastEvents(favTeams[0])
-
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        finishActivityOnBackPress()
 
         pastEventsRecyclerView = binding.pastEventsList
 
@@ -86,6 +74,16 @@ class EventsFragment : Fragment() {
         return root
     }
 
+    private fun finishActivityOnBackPress() {
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
     private fun hideRecyclerViewAndShowNoEventsMessage() {
         pastEventsRecyclerView.visibility = View.GONE
         binding.noEventsText.visibility = View.VISIBLE
@@ -107,10 +105,10 @@ class EventsFragment : Fragment() {
         inflater.inflate(R.menu.events_menu, menu)
         val spinner = menu.findItem(R.id.team_change).actionView as AppCompatSpinner
         val favTeamNames = mutableListOf<String>()
-        favTeams.forEach{
+        favTeams.forEach {
             favTeamNames.add(it.strTeam)
         }
-        var arrayAdapter =
+        val arrayAdapter =
             ArrayAdapter(context as Activity, R.layout.team_change_spinner_list_item, favTeamNames)
         arrayAdapter.setDropDownViewResource(R.layout.team_change_spinner_list_item_checked)
         spinner.adapter = arrayAdapter

@@ -2,7 +2,9 @@ package com.sportstracking.helmetly.ui.selection.sport
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +14,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.HomeActivity
 import com.sportstracking.helmetly.NoNetworkActivity
-import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.data.TeamArray
 import com.sportstracking.helmetly.databinding.FragmentSportSelectionBinding
 import com.sportstracking.helmetly.network.NetworkConnectivityChecker
@@ -46,7 +47,6 @@ class SportSelectionFragment : Fragment() {
         }
         loadPreviouslySelectedTeamsIntoViewModel()
         fromHome = (activity as AppCompatActivity).intent.getBooleanExtra("fromHome", false)
-//        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -82,14 +82,7 @@ class SportSelectionFragment : Fragment() {
             }
         }
 
-
-        val callback: OnBackPressedCallback =
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    activity?.finish()
-                }
-            }
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+        handleBackPressed()
 
         val sportSelectionAdapter = SportSelectionAdapter()
         sportsRecyclerView.adapter = sportSelectionAdapter
@@ -103,8 +96,21 @@ class SportSelectionFragment : Fragment() {
         return root
     }
 
+    private fun handleBackPressed() {
+        val callback: OnBackPressedCallback =
+            object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    activity?.finish()
+                }
+            }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
+    }
+
     private fun loadPreviouslySelectedTeamsIntoViewModel() {
-        favTeams = TinyDB(context).getListObject("${SharedPrefHelper.UID}_FAV_TEAMS", TeamArray.Team::class.java) as ArrayList<TeamArray.Team>
+        favTeams = TinyDB(context).getListObject(
+            "${SharedPrefHelper.UID}_FAV_TEAMS",
+            TeamArray.Team::class.java
+        ) as ArrayList<TeamArray.Team>
         favoriteSelectionViewModel.selectedTeams.value = favTeams
     }
 
@@ -122,32 +128,4 @@ class SportSelectionFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//        if (fromHome){
-//            inflater.inflate(R.menu.sport_selection_menu, menu)
-//        }
-//    }
-//
-//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return when (item.itemId) {
-//            R.id.done_button -> {
-//                if(favoriteSelectionViewModel.selectedTeams.value?.isEmpty() == false){
-//                    saveSelectedTeamsToSharedPref()
-//                    startActivity(Intent(context, HomeActivity::class.java))
-//                    activity?.finish()
-//                }
-//                else{
-//                    Toast.makeText(context, "Please select at least one team to proceed", Toast.LENGTH_SHORT).show()
-//                }
-//                return true
-//            }
-//
-//            else -> super.onOptionsItemSelected(item)
-//        }
-//    }
-
-
-
 }

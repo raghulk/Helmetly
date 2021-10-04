@@ -1,16 +1,16 @@
 package com.sportstracking.helmetly.ui.selection
 
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.databinding.FragmentSelectedTeamsBinding
 
-class SelectedTeamsFragment: Fragment() {
+class SelectedTeamsFragment : Fragment() {
     private lateinit var favoriteSelectionViewModel: FavoriteSelectionViewModel
     private lateinit var selectedTeamRecyclerView: RecyclerView
     private lateinit var selectedTeamsAdapter: SelectedTeamsAdapter
@@ -26,7 +26,8 @@ class SelectedTeamsFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSelectedTeamsBinding.inflate(inflater, container, false)
-        favoriteSelectionViewModel = ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
+        favoriteSelectionViewModel =
+            ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
         setupAdapter()
         return binding.root
     }
@@ -36,13 +37,14 @@ class SelectedTeamsFragment: Fragment() {
             selectedTeamRecyclerView = selectedTeamsList
         }
         selectedTeamsAdapter = SelectedTeamsAdapter(favoriteSelectionViewModel)
-        selectedTeamRecyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        selectedTeamRecyclerView.layoutManager =
+            LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
         selectedTeamRecyclerView.adapter = selectedTeamsAdapter
 
         favoriteSelectionViewModel.selectedTeams.observe(viewLifecycleOwner, {
-            if(it.isEmpty()){
+            if (it.isEmpty()) {
                 hideRecyclerviewAndShowText()
-            } else{
+            } else {
                 selectedTeamRecyclerView.visibility = View.VISIBLE
                 binding.noFavoriteText.visibility = View.GONE
                 selectedTeamsAdapter.setTeams(it)

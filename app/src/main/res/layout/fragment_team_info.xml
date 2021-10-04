@@ -3,23 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="12dp"
-        android:paddingBottom="12dp"
-        >
+        android:paddingBottom="12dp">
 
         <ImageView
             android:id="@+id/fan_art_image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="225dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/flag_india" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/sport_played_container"
@@ -33,7 +31,7 @@
                 android:id="@+id/sport_played_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sport Played"
+                android:text="@string/sport_played"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -57,7 +55,7 @@
                 android:id="@+id/country_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Country"
+                android:text="@string/country"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -81,7 +79,7 @@
                 android:id="@+id/stadium_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Stadium"
+                android:text="@string/stadium"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -105,7 +103,7 @@
                 android:id="@+id/league_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="League"
+                android:text="@string/league"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -129,7 +127,7 @@
                 android:id="@+id/gender_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Gender"
+                android:text="@string/gender"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -153,7 +151,7 @@
                 android:id="@+id/formed_year_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Formed Year"
+                android:text="@string/formed_year"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -177,7 +175,7 @@
                 android:id="@+id/description_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Description"
+                android:text="@string/description"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -188,57 +186,5 @@
                 android:layout_marginTop="8dp"
                 tools:text="Cricket" />
         </LinearLayout>
-
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/stadium"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/country"-->
-        <!--            tools:text="Cricket" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/league"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/stadium"-->
-        <!--            tools:text="Cricket" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/gender"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/league"-->
-        <!--            tools:text="Cricket" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/formed_year"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/gender"-->
-        <!--            tools:text="Cricket" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/description"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="8dp"-->
-        <!--            android:layout_marginTop="16dp"-->
-        <!--            app:layout_constraintStart_toStartOf="parent"-->
-        <!--            app:layout_constraintTop_toBottomOf="@id/formed_year"-->
-        <!--            tools:text="Cricket" />-->
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

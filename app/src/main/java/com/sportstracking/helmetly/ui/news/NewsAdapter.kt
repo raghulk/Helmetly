@@ -2,7 +2,6 @@ package com.sportstracking.helmetly.ui.news
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,7 +16,6 @@ import com.sportstracking.helmetly.data.TeamArray.Team
 import omari.hamza.storyview.StoryView
 import omari.hamza.storyview.model.MyStory
 import omari.hamza.storyview.utils.StoryViewHeaderInfo
-import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -97,7 +95,6 @@ class NewsAdapter(
             linkedHashMapNews.put(it.key, it.value)
         }
         this.news = linkedHashMapNews
-        Log.d("VM", linkedHashMapNews.size.toString())
     }
 
 

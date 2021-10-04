@@ -87,8 +87,8 @@ class TeamSelectionFragment : Fragment() {
         teamsRecyclerView.adapter = teamSelectionAdapter
 
         favoriteSelectionViewModel.teamsData.observe(viewLifecycleOwner, {
-            if (it.teams.toString() != "null") {
-                it.teams?.let { it1 -> teamSelectionAdapter.setTeams(it1) }
+            if (it.teams != null) {
+                teamSelectionAdapter.setTeams(it.teams)
                 teamSelectionAdapter.notifyDataSetChanged()
                 showRecyclerViewAndRemoveMessages()
             } else {

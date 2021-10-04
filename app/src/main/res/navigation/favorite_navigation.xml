@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_sport_selection"
         android:name="com.sportstracking.helmetly.ui.selection.sport.SportSelectionFragment"
-        tools:layout="@layout/fragment_sport_selection" >
+        tools:layout="@layout/fragment_sport_selection">
         <action
             android:id="@+id/action_navigation_sport_selection_to_navigation_country_selection"
             app:destination="@id/navigation_country_selection" />
@@ -17,8 +17,7 @@
     <fragment
         android:id="@+id/navigation_country_selection"
         android:name="com.sportstracking.helmetly.ui.selection.country.CountrySelectionFragment"
-        tools:layout="@layout/fragment_country_selection"
-        >
+        tools:layout="@layout/fragment_country_selection">
         <argument
             android:name="sport"
             app:argType="string" />
@@ -30,8 +29,7 @@
     <fragment
         android:id="@+id/navigation_team_selection"
         android:name="com.sportstracking.helmetly.ui.selection.team.TeamSelectionFragment"
-        tools:layout="@layout/fragment_team_selection"
-        >
+        tools:layout="@layout/fragment_team_selection">
         <argument
             android:name="country"
             app:argType="string" />
@@ -46,8 +44,7 @@
         android:id="@+id/teamInfoFragment"
         android:name="com.sportstracking.helmetly.ui.selection.team.TeamInfoFragment"
         android:label="TeamInfoFragment"
-        tools:layout="@layout/fragment_team_info"
-        >
+        tools:layout="@layout/fragment_team_info">
         <argument
             android:name="teamId"
             app:argType="string" />

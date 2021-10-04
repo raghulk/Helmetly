@@ -6,14 +6,12 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.databinding.FragmentCountrySelectionBinding
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
-import java.lang.Exception
 
 class CountrySelectionFragment : Fragment() {
     private lateinit var favoriteSelectionViewModel: FavoriteSelectionViewModel
@@ -28,7 +26,8 @@ class CountrySelectionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        favoriteSelectionViewModel = ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
+        favoriteSelectionViewModel =
+            ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
         favoriteSelectionViewModel.getCountries()
         activity?.invalidateOptionsMenu()
         selectedSport = arguments?.getString(SPORT_ARG).toString()
@@ -47,8 +46,6 @@ class CountrySelectionFragment : Fragment() {
         }
 
         _binding = FragmentCountrySelectionBinding.inflate(inflater, container, false)
-//        binding.countrySelectionHeader.text =
-//            getString(R.string.country_selection_string, selectedSport)
         setupAdapter()
         return binding.root
     }

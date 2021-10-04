@@ -4,7 +4,7 @@ import com.squareup.moshi.Json
 
 data class Result(
     val results: List<Event>?
-){
+) {
     data class Event(
         val idEvent: String,
         val idSoccerXML: String?,
