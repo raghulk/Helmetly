@@ -1,6 +1,8 @@
 # Helmetly - Android application
 
-<img src="https://github.com/raghulk/Helmetly/blob/master/app/src/main/ic_launcher-playstore.png" width="200" height="200">
+<p align="center">
+  <img src="https://github.com/raghulk/Helmetly/blob/master/app/src/main/ic_launcher-playstore.png" width="200" height="200">
+</p>
 
 - This repository contains code for a sports tracking app that used data obtained from the SportsDB API.
 
@@ -23,7 +25,7 @@ different teams of their choice. Any suggestions, feedback or feature requests a
 - Retrofit (@retrofit) - For data request purposes from api (json and bitmap)
 - Moshi (@moshi) - to convert JSON returned into POJO objects
 - Glide (@glide) - to load images from any service
-- Gson (@gson) - For storing objects as json strings in shared preferences string set
+- TinyDB (@tinydb) - For storing and retrieving objects as json strings in shared preferences as string set
 - Circle Image View (@civ) - For displaying team logos and profile picture in circular image views
 - App Intro (@appintro) - For displaying the application's walkthorugh
 - Stories View (@storyview) - For displaying the news retrieved for each team into stories like Instagram
