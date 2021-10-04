@@ -1,0 +1,76 @@
+package com.sportstracking.helmetly.data
+
+import com.squareup.moshi.Json
+
+data class TeamArray(val teams: List<Team>?) {
+    data class Team(
+        val idTeam: String,
+        val idSoccerXML: String?,
+        @Json(name = "idAPIfootball")
+        val idAPIFootball: String?,
+        val intLoved: String?,
+        val strTeam: String,
+        val strTeamShort: String?,
+        val strAlternate: String?,
+        val intFormedYear: String?,
+        val strSport: String?,
+        val strLeague: String?,
+        val idLeague: String?,
+        val strLeague2: String?,
+        val idLeague2: String?,
+        val strLeague3: String?,
+        val idLeague3: String?,
+        val strLeague4: String?,
+        val idLeague4: String?,
+        val strLeague5: String?,
+        val idLeague5: String?,
+        val strLeague6: String?,
+        val idLeague6: String?,
+        val strLeague7: String?,
+        val idLeague7: String?,
+        val strDivision: String?,
+        val strManager: String?,
+        val strStadium: String?,
+        val strKeywords: String?,
+        val strRSS: String?,
+        val strStadiumThumb: String?,
+        val strStadiumDescription: String?,
+        val strStadiumLocation: String?,
+        val strStadiumCapacity: String?,
+        val strWebsite: String?,
+        val strFacebook: String?,
+        val strTwitter: String?,
+        val strInstagram: String?,
+        val strDescriptionEN: String?,
+        val strDescriptionDE: String?,
+        val strDescriptionFR: String?,
+        val strDescriptionCN: String?,
+        val strDescriptionIT: String?,
+        val strDescriptionJP: String?,
+        val strDescriptionRU: String?,
+        val strDescriptionES: String?,
+        val strDescriptionPT: String?,
+        val strDescriptionSE: String?,
+        val strDescriptionNL: String?,
+        val strDescriptionHU: String?,
+        val strDescriptionNO: String?,
+        val strDescriptionIL: String?,
+        val strDescriptionPL: String?,
+        val strGender: String?,
+        val strCountry: String?,
+        val strTeamBadge: String?,
+        val strTeamJersey: String?,
+        val strTeamLogo: String?,
+        @Json(name = "strTeamFanart1")
+        val strTeamFanArt1: String?,
+        @Json(name = "strTeamFanart2")
+        val strTeamFanArt2: String?,
+        @Json(name = "strTeamFanart3")
+        val strTeamFanArt3: String?,
+        @Json(name = "strTeamFanart4")
+        val strTeamFanArt4: String?,
+        val strTeamBanner: String?,
+        val strYoutube: String?,
+        val strLocked: String?
+    )
+}

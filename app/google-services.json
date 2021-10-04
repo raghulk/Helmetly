@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1031878762040",
+    "project_id": "helmetly",
+    "storage_bucket": "helmetly.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031878762040:android:6f00ff88b8bd5c6e6fd0cd",
+        "android_client_info": {
+          "package_name": "com.sportstracking.helmetly"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031878762040-42c77m0a3uo1a12ph8nesl1at0774akl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sportstracking.helmetly",
+            "certificate_hash": "59b7609cfcf76f2c876b83588f377bac235ab723"
+          }
+        },
+        {
+          "client_id": "1031878762040-s3jr1982u4miusr0majfcr638mcqc84i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6FM5RiRh5UyW36nTLoxcN52nf4XDdu-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031878762040-s3jr1982u4miusr0majfcr638mcqc84i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

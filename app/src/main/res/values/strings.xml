@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Helmetly</string>
+    <string name="title_events">Events</string>
+    <string name="title_favorites">Favorites</string>
+    <string name="title_more">More</string>
+    <string name="sharedPrefFileName">sharedResources</string>
+    <string name="onBoarding_done">onBoardingDone</string>
+    <string name="sign_in_email">sign_in_email</string>
+    <string name="sign_in_name">sign_in_name</string>
+    <string name="sign_in_avatar">sign_in_avatar</string>
+    <string name="DEFAULT_FAV_TEAM">None</string>
+    <string name="country_selection_string">Select a country that plays %s</string>
+    <string name="search_placeholder">Search...</string>
+    <string name="no_teams_selected_text">No favorite teams selected yet</string>
+    <string name="no_internet_string">No Internet connection</string>
+    <string name="retry">Retry</string>
+    <string name="no_teams_available_text">It looks like %s does not have \nany %s teams</string>
+    <string name="go_back">Go Back</string>
+    <string name="no_news_text">No team news to show</string>
+    <string name="load_events_for_team">change team</string>
+    <string name="no_events_text">No events found for this team</string>
+</resources>

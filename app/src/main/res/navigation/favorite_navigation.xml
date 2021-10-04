@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/favorite_navigation.xml"
+    app:startDestination="@id/navigation_sport_selection">
+
+    <fragment
+        android:id="@+id/navigation_sport_selection"
+        android:name="com.sportstracking.helmetly.ui.selection.sport.SportSelectionFragment"
+        tools:layout="@layout/fragment_sport_selection" >
+        <action
+            android:id="@+id/action_navigation_sport_selection_to_navigation_country_selection"
+            app:destination="@id/navigation_country_selection" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_country_selection"
+        android:name="com.sportstracking.helmetly.ui.selection.country.CountrySelectionFragment"
+        tools:layout="@layout/fragment_country_selection"
+        >
+        <argument
+            android:name="sport"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_country_selection_to_navigation_team_selection"
+            app:destination="@id/navigation_team_selection" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_team_selection"
+        android:name="com.sportstracking.helmetly.ui.selection.team.TeamSelectionFragment"
+        tools:layout="@layout/fragment_team_selection"
+        >
+        <argument
+            android:name="country"
+            app:argType="string" />
+        <argument
+            android:name="sport"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_navigation_team_selection_to_teamInfoFragment"
+            app:destination="@id/teamInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/teamInfoFragment"
+        android:name="com.sportstracking.helmetly.ui.selection.team.TeamInfoFragment"
+        android:label="TeamInfoFragment"
+        tools:layout="@layout/fragment_team_info"
+        >
+        <argument
+            android:name="teamId"
+            app:argType="string" />
+    </fragment>
+</navigation>

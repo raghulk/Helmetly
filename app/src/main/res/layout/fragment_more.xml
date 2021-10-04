@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/profile_view"
+        android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp" />
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
+
+        <TextView
+            android:id="@+id/user_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <View
+            android:id="@+id/separator"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginVertical="@dimen/vertical_view_margin"
+            android:layout_marginHorizontal="8dp"
+
+            app:layout_constraintTop_toBottomOf="@id/profile_view"
+            android:background="@color/separator_color" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="vertical"
+        android:layout_marginTop="4dp"
+        android:layout_marginHorizontal="8dp"
+        app:layout_constraintTop_toBottomOf="@id/profile_view">
+
+        <TextView
+            android:id="@+id/about_developer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingVertical="2dp"
+            android:text="About Developer"
+            android:textSize="16dp"
+            app:drawableEndCompat="@drawable/ic_arrow_forward"
+            app:drawableRightCompat="@drawable/ic_arrow_forward"
+            app:drawableTint="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_height"
+            android:layout_marginVertical="@dimen/vertical_view_margin"
+            android:background="@color/separator_color" />
+
+        <TextView
+            android:id="@+id/contribute_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:drawableEndCompat="@drawable/ic_arrow_forward"
+            app:drawableRightCompat="@drawable/ic_arrow_forward"
+            android:drawableTint="@color/white"
+            android:paddingVertical="2dp"
+            android:text="Contribute to Project"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_height"
+            android:layout_marginVertical="@dimen/vertical_view_margin"
+            android:background="@color/separator_color" />
+
+        <TextView
+            android:id="@+id/app_walkthrough"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:drawableEndCompat="@drawable/ic_arrow_forward"
+            app:drawableRightCompat="@drawable/ic_arrow_forward"
+            android:drawableTint="@color/white"
+            android:paddingVertical="2dp"
+            android:text="App Walkthrough"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/separator_height"
+            android:layout_marginVertical="@dimen/vertical_view_margin"
+            android:background="@color/separator_color" />
+
+        <TextView
+            android:id="@+id/logout_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:drawableEndCompat="@drawable/ic_arrow_forward"
+            app:drawableRightCompat="@drawable/ic_arrow_forward"
+            android:drawableTint="@color/white"
+            android:paddingVertical="2dp"
+            android:text="Logout of Helmetly"
+            android:textSize="16dp"
+            android:textStyle="normal" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
