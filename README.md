@@ -7,7 +7,7 @@
 - This repository contains code for a sports tracking app that used data obtained from the SportsDB API.
 
 - This app provides users a way to manage their favorite teams from across the globe for any sport. You just have to specify a sport and a country to get to your team. 
-You can then view those teams' past events, about them, latest news in the form of stories (like in Instagram). Multiple google users can use the app to sign to track 
+You can then view those teams' past events, about them, latest news in the form of stories (like in Instagram). Multiple google users can use the app to sign in to track 
 different teams of their choice. Any suggestions, feedback or feature requests are welcome. You can do so by visiting the playstore.
 
 - APIs used
