@@ -16,8 +16,6 @@ different teams of their choice. Any suggestions, feedback or feature requests a
 
 - Play Store Link - https://play.google.com/store/apps/details?id=com.sportstracking.helmetly
 
-- Link to the APK (Until the app is live on Play Store) - <a href="https://github.com/raghulk/Helmetly/raw/master/app/debug/Helmetly.apk" target="_blank">Download Helmetly</a>
-
 - App screenshots are attached at the bottom of the readme.
 
 ## Libraries Used 
