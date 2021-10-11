@@ -14,7 +14,7 @@ different teams of their choice. Any suggestions, feedback or feature requests a
 1. https://www.thesportsdb.com/api.php
 2. https://newsapi.org/ - for fetching latest news for all the favorite teams
 
-- Play Store Link - https://play.google.com/store/apps/details?id=com.sportstracking.helmetly
+- Play Store Link - <a href="https://play.google.com/store/apps/details?id=com.sportstracking.helmetly">Google Play Store - Helmetly</a>
 
 - App screenshots are attached at the bottom of the readme.
 
