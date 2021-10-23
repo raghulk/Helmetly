@@ -14,9 +14,7 @@ different teams of their choice. Any suggestions, feedback or feature requests a
 1. https://www.thesportsdb.com/api.php
 2. https://newsapi.org/ - for fetching latest news for all the favorite teams
 
-- Play Store Link - https://play.google.com/store/apps/details?id=com.sportstracking.helmetly
-
-- Link to the APK (Until the app is live on Play Store) - <a href="https://github.com/raghulk/Helmetly/raw/master/app/debug/Helmetly.apk" target="_blank">Download Helmetly</a>
+- Play Store Link - <a href="https://play.google.com/store/apps/details?id=com.sportstracking.helmetly" target="_blank">Google Play Store - Helmetly</a>
 
 - App screenshots are attached at the bottom of the readme.
 
