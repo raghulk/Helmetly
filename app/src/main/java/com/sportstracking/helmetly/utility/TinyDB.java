@@ -344,7 +344,7 @@ public class TinyDB {
         String json = getString(key);
         Object value = new Gson().fromJson(json, classOfT);
         if (value == null)
-            throw new NullPointerException();
+            return null;
         return (T)value;
     }
 

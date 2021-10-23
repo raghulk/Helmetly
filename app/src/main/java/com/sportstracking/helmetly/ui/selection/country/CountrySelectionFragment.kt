@@ -10,8 +10,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.R
+import com.sportstracking.helmetly.data.CountryArray
 import com.sportstracking.helmetly.databinding.FragmentCountrySelectionBinding
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
+import com.sportstracking.helmetly.utility.TinyDB
+import com.sportstracking.helmetly.utility.Utility
+import java.util.*
 
 class CountrySelectionFragment : Fragment() {
     private lateinit var favoriteSelectionViewModel: FavoriteSelectionViewModel
@@ -28,7 +32,7 @@ class CountrySelectionFragment : Fragment() {
         super.onCreate(savedInstanceState)
         favoriteSelectionViewModel =
             ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
-        favoriteSelectionViewModel.getCountries()
+        getCountriesData()
         activity?.invalidateOptionsMenu()
         selectedSport = arguments?.getString(SPORT_ARG).toString()
         setHasOptionsMenu(true)
@@ -60,15 +64,19 @@ class CountrySelectionFragment : Fragment() {
 
         favoriteSelectionViewModel.countriesData.observe(viewLifecycleOwner, {
             countrySelectionAdapter.setCountries(it.countries)
+            TinyDB(context).putListObject(
+                getString(R.string.sharedPrefCountriesKey),
+                it.countries as ArrayList<Any>
+            )
             countrySelectionAdapter.notifyDataSetChanged()
         })
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
@@ -95,6 +103,28 @@ class CountrySelectionFragment : Fragment() {
                 return false
             }
         })
+    }
+
+    private fun getCountriesData() {
+        val countries = TinyDB(context).getListObject(
+            getString(R.string.sharedPrefCountriesKey),
+            CountryArray.Country::class.java
+        ) as List<CountryArray.Country>
+
+        if (countries.isEmpty()) {
+            favoriteSelectionViewModel.getCountries()
+            TinyDB(context).putString(
+                getString(R.string.sharedPrefDateLastFetchedData),
+                Date().toString()
+            )
+
+        } else {
+            val lastFetchedDateString =
+                TinyDB(context).getString(getString(R.string.sharedPrefDateLastFetchedData))
+
+            if (Utility().getDaysBetweenDateAndToday(lastFetchedDateString) > 180) favoriteSelectionViewModel.getCountries()
+            else favoriteSelectionViewModel.countriesData.value = CountryArray(countries)
+        }
     }
 
     companion object {

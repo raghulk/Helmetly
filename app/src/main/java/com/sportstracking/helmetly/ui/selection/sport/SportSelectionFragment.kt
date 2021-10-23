@@ -14,12 +14,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.HomeActivity
 import com.sportstracking.helmetly.NoNetworkActivity
+import com.sportstracking.helmetly.R
+import com.sportstracking.helmetly.data.SportsArray
 import com.sportstracking.helmetly.data.TeamArray
 import com.sportstracking.helmetly.databinding.FragmentSportSelectionBinding
 import com.sportstracking.helmetly.network.NetworkConnectivityChecker
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 import com.sportstracking.helmetly.utility.TinyDB
+import com.sportstracking.helmetly.utility.Utility
+import java.util.*
 
 
 class SportSelectionFragment : Fragment() {
@@ -43,7 +47,7 @@ class SportSelectionFragment : Fragment() {
             requireContext().startActivity(Intent(context, NoNetworkActivity::class.java))
             activity?.finish()
         } else {
-            favoriteSelectionViewModel.getSports()
+            getSportsData()
         }
         loadPreviouslySelectedTeamsIntoViewModel()
         fromHome = (activity as AppCompatActivity).intent.getBooleanExtra("fromHome", false)
@@ -90,10 +94,33 @@ class SportSelectionFragment : Fragment() {
 
         favoriteSelectionViewModel.sportsData.observe(viewLifecycleOwner, {
             sportSelectionAdapter.setSports(it.sports)
+            TinyDB(context).putListObject(
+                getString(R.string.sharedPrefSportsKey),
+                it.sports as ArrayList<Any>
+            )
             sportSelectionAdapter.notifyItemRangeChanged(0, it.sports.size - 1)
         })
 
         return root
+    }
+
+    private fun getSportsData() {
+        val availableSports = TinyDB(context).getListObject(
+            getString(R.string.sharedPrefSportsKey),
+            SportsArray.Sport::class.java
+        ) as List<SportsArray.Sport>
+        if (availableSports.isEmpty()) {
+            favoriteSelectionViewModel.getSports()
+            TinyDB(context).putString(
+                getString(R.string.sharedPrefDateLastFetchedData),
+                Date().toString()
+            )
+        } else {
+            val lastFetchedDateString =
+                TinyDB(context).getString(getString(R.string.sharedPrefDateLastFetchedData))
+            if (Utility().getDaysBetweenDateAndToday(lastFetchedDateString) > 120) favoriteSelectionViewModel.getSports()
+            else favoriteSelectionViewModel.sportsData.value = SportsArray(availableSports)
+        }
     }
 
     private fun handleBackPressed() {

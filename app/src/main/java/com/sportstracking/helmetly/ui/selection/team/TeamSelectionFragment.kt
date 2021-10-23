@@ -13,11 +13,14 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.sportstracking.helmetly.HomeActivity
 import com.sportstracking.helmetly.R
+import com.sportstracking.helmetly.data.TeamArray
 import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.databinding.FragmentTeamSelectionBinding
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionViewModel
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 import com.sportstracking.helmetly.utility.TinyDB
+import com.sportstracking.helmetly.utility.Utility
+import java.util.*
 
 class TeamSelectionFragment : Fragment() {
     private lateinit var favoriteSelectionViewModel: FavoriteSelectionViewModel
@@ -37,7 +40,7 @@ class TeamSelectionFragment : Fragment() {
             ViewModelProvider(requireActivity()).get(FavoriteSelectionViewModel::class.java)
         selectedCountry = arguments?.getString(COUNTRY_ARG).toString()
         selectedSport = arguments?.getString(SPORT_ARG).toString()
-        favoriteSelectionViewModel.getTeams(selectedSport, selectedCountry)
+        getTeamsData()
         activity?.invalidateOptionsMenu()
         setHasOptionsMenu(true)
     }
@@ -88,6 +91,14 @@ class TeamSelectionFragment : Fragment() {
 
         favoriteSelectionViewModel.teamsData.observe(viewLifecycleOwner, {
             if (it.teams != null) {
+                TinyDB(context).putListObject(
+                    getString(
+                        R.string.sharedPrefTeamsKey,
+                        selectedSport,
+                        selectedCountry
+                    ),
+                    it.teams as ArrayList<Any>
+                )
                 teamSelectionAdapter.setTeams(it.teams)
                 teamSelectionAdapter.notifyDataSetChanged()
                 showRecyclerViewAndRemoveMessages()
@@ -95,6 +106,41 @@ class TeamSelectionFragment : Fragment() {
                 hideRecyclerViewAndShowNoTeamsMessage()
             }
         })
+    }
+
+    private fun getTeamsData() {
+        val teams = TinyDB(context).getListObject(
+            getString(R.string.sharedPrefTeamsKey, selectedSport, selectedCountry),
+            Team::class.java
+        ) as List<Team>
+
+        if (teams.isEmpty()) {
+            favoriteSelectionViewModel.getTeams(selectedSport, selectedCountry)
+            TinyDB(context).putString(
+                getString(
+                    R.string.sharedPrefDateLastFetchedTeamData,
+                    selectedSport,
+                    selectedCountry
+                ),
+                Date().toString()
+            )
+
+        } else {
+            val lastFetchedDateString =
+                TinyDB(context).getString(
+                    getString(
+                        R.string.sharedPrefDateLastFetchedTeamData,
+                        selectedSport,
+                        selectedCountry
+                    )
+                )
+
+            if (Utility().getDaysBetweenDateAndToday(lastFetchedDateString) > 15) favoriteSelectionViewModel.getTeams(
+                selectedSport,
+                selectedCountry
+            )
+            else favoriteSelectionViewModel.teamsData.value = TeamArray(teams)
+        }
     }
 
     private fun showRecyclerViewAndRemoveMessages() {

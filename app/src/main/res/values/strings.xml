@@ -4,6 +4,9 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_more">More</string>
     <string name="sharedPrefFileName">sharedResources</string>
+    <string name="sharedPrefSportsKey">AvailableSports</string>
+    <string name="sharedPrefCountriesKey">Countries</string>
+    <string name="sharedPrefTeamsKey">Teams for %s Sport and %s Country</string>
     <string name="onBoarding_done">onBoardingDone</string>
     <string name="sign_in_email">sign_in_email</string>
     <string name="sign_in_name">sign_in_name</string>
@@ -31,4 +34,6 @@
     <string name="contribute_to_project">Contribute to Project</string>
     <string name="app_walkthrough">App Walkthrough</string>
     <string name="logout_of_helmetly">Logout of Helmetly</string>
+    <string name="sharedPrefDateLastFetchedData">dataFetchDate</string>
+    <string name="sharedPrefDateLastFetchedTeamData">Data fetch date for %s Sport and %s Country</string>
 </resources>
