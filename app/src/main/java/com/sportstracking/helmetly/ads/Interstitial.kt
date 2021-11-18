@@ -33,6 +33,39 @@ class Interstitial(val context: Context) {
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     Log.d("Interstitial", "ad loaded")
                     mInterstitialAd = interstitialAd
+//                    showAdIfAvailable()
+                }
+            })
+
+        mInterstitialAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
+            override fun onAdDismissedFullScreenContent() {}
+
+            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                Log.d("Interstitial", "ad error")
+            }
+
+            override fun onAdShowedFullScreenContent() {
+                mInterstitialAd = null
+            }
+        }
+    }
+
+    fun loadAdAndShow() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(
+            context,
+            "ca-app-pub-3940256099942544/1033173712",
+            adRequest,
+            object : InterstitialAdLoadCallback() {
+                override fun onAdFailedToLoad(adError: LoadAdError) {
+                    Log.d("Interstitial", "ad failed to load")
+                    mInterstitialAd = null
+                }
+
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    Log.d("Interstitial", "ad loaded")
+                    mInterstitialAd = interstitialAd
                     showAdIfAvailable()
                 }
             })

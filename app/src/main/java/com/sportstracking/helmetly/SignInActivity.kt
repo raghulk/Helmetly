@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.sportstracking.helmetly.ads.Interstitial
 import com.sportstracking.helmetly.data.TeamArray.Team
 import com.sportstracking.helmetly.databinding.ActivitySignInBinding
 import com.sportstracking.helmetly.ui.selection.FavoriteSelectionActivity
@@ -166,8 +165,6 @@ class SignInActivity : AppCompatActivity() {
                 startActivity(Intent(this, HomeActivity::class.java))
             }
             finish()
-        } else {
-            Interstitial(this)
         }
     }
 

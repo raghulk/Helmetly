@@ -2,21 +2,27 @@ package com.sportstracking.helmetly
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.github.appintro.AppIntro
 import com.github.appintro.AppIntroFragment
 import com.github.appintro.model.SliderPage
+import com.google.android.gms.ads.AdError
+import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.MobileAds
+import com.sportstracking.helmetly.ads.Interstitial
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 
 
 class IntroActivity : AppIntro() {
+    private lateinit var ad: Interstitial
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         MobileAds.initialize(this)
+        ad = Interstitial(this)
 
         addPage1()
         addPage2()
@@ -74,14 +80,14 @@ class IntroActivity : AppIntro() {
     override fun onSkipPressed(currentFragment: Fragment?) {
         super.onSkipPressed(currentFragment)
         markIntroAsComplete()
-        navigateToSignIn()
+        displayAdAndTakeUserToSignIn()
         finish()
     }
 
     override fun onDonePressed(currentFragment: Fragment?) {
         super.onDonePressed(currentFragment)
         markIntroAsComplete()
-        navigateToSignIn()
+        displayAdAndTakeUserToSignIn()
         finish()
     }
 
@@ -89,9 +95,23 @@ class IntroActivity : AppIntro() {
         SharedPrefHelper(this).insertBoolean(getString(R.string.onBoarding_done), true)
     }
 
-    private fun navigateToSignIn() {
-        val intent = Intent(this, SignInActivity::class.java)
-        startActivity(intent)
+    private fun displayAdAndTakeUserToSignIn() {
+        val ad = ad.mInterstitialAd
+        if (ad != null) {
+            ad.show(this)
+            ad.fullScreenContentCallback = object : FullScreenContentCallback() {
+                override fun onAdDismissedFullScreenContent() {
+                    val intent = Intent(this@IntroActivity, SignInActivity::class.java)
+                    startActivity(intent)
+                }
+
+                override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+                    Log.d("Interstitial", "ad error")
+                    val intent = Intent(this@IntroActivity, SignInActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        }
     }
 
 }

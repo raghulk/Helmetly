@@ -26,7 +26,7 @@ class FavoritesFragment : Fragment() {
         _binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         val intent = Intent(context, FavoriteSelectionActivity::class.java)
-        intent.putExtra("fromHome", true)
+        intent.putExtra(FROM_HOME_INTENT_STRING, true)
         startActivity(intent)
         return binding.root
     }
@@ -43,5 +43,9 @@ class FavoritesFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        val FROM_HOME_INTENT_STRING = "fromHome"
     }
 }

@@ -2,22 +2,18 @@ package com.sportstracking.helmetly.ui.selection
 
 import android.content.Context
 import android.os.Bundle
-import android.os.IBinder
 import android.util.Log
-import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
-import com.sportstracking.helmetly.HomeActivity
 import com.sportstracking.helmetly.R
 import com.sportstracking.helmetly.ads.Interstitial
 import com.sportstracking.helmetly.data.TeamArray
 import com.sportstracking.helmetly.databinding.ActivityFavoriteSelectionBinding
-import com.sportstracking.helmetly.ui.selection.sport.SportSelectionFragment
+import com.sportstracking.helmetly.ui.favorites.FavoritesFragment
 import com.sportstracking.helmetly.utility.SharedPrefHelper
 import com.sportstracking.helmetly.utility.TinyDB
 
@@ -32,7 +28,7 @@ class FavoriteSelectionActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        if (shouldShowInterstitial()) showInterstiatial()
+        if (shouldShowInterstitial()) showInterstitial()
 
         favoriteSelectionViewModel =
             ViewModelProvider(this).get(FavoriteSelectionViewModel::class.java)
@@ -55,8 +51,8 @@ class FavoriteSelectionActivity : AppCompatActivity() {
         return favTeams.isNotEmpty() && timesVisited % 3 == 0L
     }
 
-    private fun showInterstiatial() {
-        Interstitial(this)
+    private fun showInterstitial() {
+        Interstitial(this).loadAdAndShow()
     }
 
     override fun onSupportNavigateUp(): Boolean {
